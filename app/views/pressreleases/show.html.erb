@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @pressrelease.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @pressrelease.description %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @pressrelease.image %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @pressrelease.date %>
+</p>
+
+<p>
+  <strong>Live:</strong>
+  <%= @pressrelease.live %>
+</p>
+
+<%= link_to 'Edit', edit_pressrelease_path(@pressrelease) %> |
+<%= link_to 'Back', pressreleases_path %>

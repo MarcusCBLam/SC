@@ -1,0 +1,37 @@
+<%= form_for(@pressrelease) do |f| %>
+  <% if @pressrelease.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pressrelease.errors.count, "error") %> prohibited this pressrelease from being saved:</h2>
+
+      <ul>
+      <% @pressrelease.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= f.text_field :image %>
+  </div>
+  <div class="field">
+    <%= f.label :date %><br>
+    <%= f.date_select :date %>
+  </div>
+  <div class="field">
+    <%= f.label :live %><br>
+    <%= f.number_field :live %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
