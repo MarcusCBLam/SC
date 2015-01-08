@@ -1,0 +1,47 @@
+<div data-magellan-expedition="fixed" >
+<ul class=" tabs vertical" data-tab role="tablist">
+  <li  class="tab-title active" role="presentational" ><a class="panelToTop" href="#panel2-1" role="tab" tabindex="0" aria-selected="true" controls="panel2-1">Overview</a></li>
+  <li  class="tab-title" role="presentational" ><a class="panelToTop" href="#panel2-2" role="tab" tabindex="0"aria-selected="false" controls="panel2-2">Key Features</a></li>
+  <li  class="tab-title" role="presentational"><a class="panelToTop" href="#panel2-3" role="tab" tabindex="0" aria-selected="false" controls="panel2-3">Technical Specs</a></li>
+  <li  class="tab-title" role="presentational" ><a class="panelToTop" href="#panel2-4" role="tab" tabindex="0" aria-selected="false" controls="panel2-4">Dimensions &amp; Weights</a></li>
+<li  class="tab-title" role="presentational" ><a class="panelToTop" href="#panel2-4" role="tab" tabindex="0" aria-selected="false" controls="panel2-4">Downloads</a></li>
+<li  class="tab-title" role="presentational" ><a class="panelToTop" href="#panel2-4" role="tab" tabindex="0" aria-selected="false" controls="panel2-4">Videos</a></li>
+<li  class="tab-title" role="presentational" ><a class="panelToTop" href="#panel2-4" role="tab" tabindex="0" aria-selected="false" controls="panel2-4">VISI Connect</a></li>
+</ul>
+</div>
+
+<div class="row fullWidth">
+	<div class="large-9 columns" >
+<div class="tabs-content">
+  <section role="tabpanel" aria-hidden="false" class="content active" id="panel2-1">
+    <h2>First panel content goes here...</h2>
+  </section>
+  <section role="tabpanel" aria-hidden="true" class="content" id="panel2-2">
+    <h2>Second panel content goes here...</h2>
+  </section>
+  <section role="tabpanel" aria-hidden="true" class="content" id="panel2-3">
+    <h2>Third panel content goes here...</h2>
+    <BR>
+
+		 ddd   																					<BR>
+  </section>
+  <section role="tabpanel" aria-hidden="true" class="content" id="panel2-4">
+    <h2>Fourth panel content goes here...</h2>
+  </section>
+</div>
+</div>
+</div>
+
+
+<script>
+$(document).foundation({
+"magellan-expedition": {
+  active_class: 'active', // specify the class used for active sections
+  threshold: 450, // how many pixels until the magellan bar sticks, 0 = auto
+  destination_threshold: 50, // pixels from the top of destination for it to be considered active
+  throttle_delay: 100, // calculation throttling to increase framerate
+  fixed_top: 50, // top distance in pixels assigend to the fixed element on scroll
+  offset_by_height: false // whether to offset the destination by the expedition height. Usually you want this to be true, unless your expedition is on the side.
+}
+});
+</script>

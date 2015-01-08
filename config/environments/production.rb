@@ -75,4 +75,20 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  
+ config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => ENV['S3_BUCKET_NAME'],
+      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+    }
+  }
+  # do not use this as it changes all the assets to this.
+  #config.action_controller.asset_host = "http://soundcraft.com.s3.amazonaws.com"
+  
+  # devise added 08/01/15 
+  # need to change host to real server
+  config.action_mailer.default_url_options = { host: '127.0.0.1', port: 3000 }
+  
 end

@@ -1,0 +1,30 @@
+<%
+	@meta = Page.find_by lcl_name: 'product_registration'
+	meta title: 	@meta.title,
+	description: 	strip_html(@meta.description),
+	keywords: 		@meta.keywords.gsub(" ", ",")
+%>
+<div class="header_bc">
+	<nav class="breadcrumbs" role="menubar" aria-label="breadcrumbs">
+		<li class="unavailable"  aria-disabled="true">>></li>
+	    <li role="menuitem"><a href="/">Home</a></li>
+	    <li role="menuitem" class="current"><a href="#"><%= @meta.title %></a></li>
+	</nav>
+</div>
+
+<div class="row">
+<div class="small-12 columns" >
+	<br>
+<h1> where to buy </h1>	
+
+<h1>Here are your details, am I correct?</h1>
+<b>IP:&nbsp;&nbsp;</b><%= @info.request %><br />
+<b>Country:&nbsp;&nbsp;</b><%= @info.country_name %><br />
+<b>City:&nbsp;&nbsp;</b><%= @info.city_name %><br />
+<b>Region:&nbsp;&nbsp;</b><%= @info.real_region_name %>
+<br>
+<br>
+<br>
+<br>
+</div>
+</div>

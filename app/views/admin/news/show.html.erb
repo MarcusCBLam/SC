@@ -1,0 +1,70 @@
+<% set_meta_tags title: "News Admin - #{@news.title}",
+				 reverse: true,
+                 description: @news.title,
+                 keywords: @news.keywords %>
+<h1><%= title @news.title %></h1>
+	<span class="little"><%= link_to(news_url(@news, locale: I18n.locale), news_url(@news, locale: I18n.locale)) %>
+	<%= link_to(image_tag("icons/external_link_icon.png"), news_url(@news, locale: I18n.locale)) %></span>
+<br/>
+<br/>
+<ul class="button-group round">
+	<li><%= link_to 'Back', admin_news_index_path, class: "small secondary button" %></li>
+	<li><%= link_to 'Edit', edit_admin_news_path(@news, locale: I18n.locale), class: "small secondary button" %> </li>
+	<li><%= link_to 'Delete', [:admin, @news], confirm: 'Are you sure?', method: :delete, class: "small alert button" %> </li>
+</ul>
+
+<div class="row">
+	<div class="large-6 columns">
+		<p>Publish on: <%=l @news.post_on, format: :long %></p>
+		<%#=truncate(strip_html(@news.body), length: 75) %>
+	</div>
+	<div class="large-6 columns">
+		<% if !@news.image_file_name.blank? %>
+  			<%= image_tag(@news.image.url(:thumb)) %>
+  		<% end %>
+  	</div>
+</div>
+
+
+<div class="row">
+	<div class="large-6 columns">
+		<div class="group">
+			<h4 class="subheader">Send News Email</h4>
+			<p><i>Regardless of the publication date, this will send notifications now.</i></p>
+			<%= simple_form_for [:admin, @news], url: notify_admin_news_path(@news) do |f| %>
+				<%= f.input :from, hint: "(must be a valid address)" %>
+				<%= f.input :to, hint: "(default sends it to HPro Executive list)" %>
+				<%= f.submit "Send News", class: "small round button" %> 
+			<% end %>
+			<p>config.hpro_execs = <%= HarmanSignalProcessingWebsite::Application.config.hpro_execs.join(", ") %></p>
+		</div>	
+	</div>
+	<div class="large-6 columns">
+		<% if @products.count > 0 || @news.news_products.count > 0 %>
+		<div class="group">
+			<h4 class="subheader">This news is associated with the following product(s):</h4>
+			<% if @products.count > 0 %>
+				<%= simple_form_for [:admin, @news_product], remote: true do |f| %>
+					<%= hidden_field_tag "called_from", "news" %>
+				    <%= f.hidden_field :news_id %>
+				    <div class="row collapse">
+				    	<div class="large-8 small-8 columns">
+				    		<%= f.association :product, collection: @products, label: false %> 
+				    	</div>
+				    	<div class="large-4 small-4 columns">
+				    		<%= submit_tag 'add', class: "prefix button"  %>
+				    	</div>
+				    </div>
+				<% end %>
+			<% end %>
+
+			<ul id="news_products" class="list">
+				<% @news.news_products.each do |np| %>
+					<%= render '/admin/shared/news_product_row', np: np, called_from: 'news' %>
+				<% end %>
+			</ul>
+		</div>
+		<% end %>
+	</div>
+</div>
+

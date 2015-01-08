@@ -10,7 +10,33 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+//= require vendor/modernizr
+//= require muse/jquery-1.8.3.min
 //= require jquery_ujs
-//= require turbolinks
-//= require_tree .
+//= require jquery-ui.min
+//= require jquery.lightbox-0.5.min
+//= require jquery.datetimepicker
+//= require global_functions
+//= require maps
+//= require twitter
+//= require homepage
+//= require foundation.min
+//= require add2home
+//= require jwplayer
+//= require swfobject
+//= require image_zoomer_main  
+//= require lightbox
+//= require soundcraft_application
+//= require elevatezoom/jquery.elevatezoom
+//= require_self
+
+/* vendor/jquery.js (v2) doesn't work with Muse scrolling so downgraded to muse/jquery-1.8.3.min.js 30/12/2014 */
+
+document.createElement("article");
+document.createElement("footer");
+document.createElement("header");
+document.createElement("hgroup");
+document.createElement("nav");
+document.createElement("section");
+
+$(function(){ $(document).foundation(); });

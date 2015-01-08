@@ -1,0 +1,67 @@
+
+<div id="product_image_bg" class="fullWidth">
+
+	<div class="row">
+		<div class="small-12 column" align="center">
+				
+
+
+					<div>
+						<%= image_tag("/placeholder_product_image2.png", :id => "product_image")  %>
+					</div>
+					
+					<div class="absolute">
+						<img id="zoom_09" src="/placeholder_product_image.png" data-zoom-image="/placeholder_product_image_xl.png"/>
+						
+					</div>
+					
+<select id="select"> 
+<option value="1">Front</option>
+<option value="2">Back</option>
+<option value="3">Scenery</option>
+<option value="4">Side</option>
+</select>
+					
+					
+
+	
+		</div>
+	</div>
+
+</div>
+<script>
+    $('#zoom_09').elevateZoom({
+    zoomType: "inner",
+cursor: "crosshair",
+zoomWindowFadeIn: 500,
+zoomWindowFadeOut: 750});
+
+
+$("#select").change(function(e){ 
+
+var currentValue = $("#select").val(); 
+if(currentValue == 1){ 
+smallImage = '/placeholder_product_images.png'; 
+largeImage = '/placeholder_product_image_xl.png'; 
+} 
+if(currentValue == 2){ 
+smallImage = '/placeholder_product_image.png'; 
+largeImage = '/placeholder_product_image_xl.png'; 
+} 
+if(currentValue == 3){ 
+smallImage = '/placeholder_product_images.png'; 
+largeImage = '/placeholder_product_image_xl.png'; 
+} 
+if(currentValue == 4){ 
+	smallImage = '/placeholder_product_image.png'; 
+largeImage = '/placeholder_product_image_xl.png'; 
+} 
+
+ $('#gallery_09 a').removeClass('active').eq(currentValue-1).addClass('active');	
+ 
+ var ez = $('#zoom_09').data('elevateZoom');	
+ ez.swaptheimage(smallImage, largeImage); 
+ });
+ 
+ 
+</script>

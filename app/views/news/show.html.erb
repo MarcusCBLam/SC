@@ -1,0 +1,48 @@
+<%
+	@meta = Page.find_by lcl_name: 'news'
+	meta title: 	@news.name,
+	description: 	strip_html(@news.description),
+	keywords: 		@news.keywords
+%>
+<div class="header_bc">
+	<nav class="breadcrumbs" role="menubar" aria-label="breadcrumbs">
+		<li class="unavailable"  aria-disabled="true">>></li>
+	    <li role="menuitem"><a href="/">Home</a></li>
+	    <li role="menuitem"><a href="/">News</a></li>
+	    <li role="menuitem" class="current"><a href="#"><%= @news.name %></a></li>
+	</nav>
+</div>
+
+<div id="article">
+	<div class="row">
+		<div class="small-12 large-12 columns news_title">
+			<%= image_tag(@news.image.url) %>
+		</div>	
+	</div>
+	<div class="row">
+		<div class="small-12 large-3 columns news_summary">
+			<div class="summary_box" align="center"><%=l @news.post_on, format: :long %></div>
+			<div class="summary_box" align="center"><%= @news.news_category.name %></div>
+
+		
+				<h2><%= t('titles.related_products') %></h2>
+				<% @news.products.each do |product| %>
+					<%= render_partial "products/product_square", product: product, compare: false %>
+				<% end %>
+
+		</div>
+		
+		<div class="small-12 large-9 columns news_article">
+			
+		<h1><%= @news.name %></h1>
+		
+		<span class="justify_text"><%= @news.description.html_safe %></span>
+		<div align="right"><%= render 'shared/add_this' %></div>	
+		<br />
+		<a href="/news" class="button radius">Back to News List</a>
+		
+		<br />
+		<br />	
+		</div>
+	</div>
+</div>

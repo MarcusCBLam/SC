@@ -1,0 +1,22 @@
+<script type="text/javascript">
+   window.jQuery || document.write('\x3Cscript src="js/muse/jquery-1.8.3.min.js" type="text/javascript">\x3C/script>');
+</script>
+    <script src="js/muse/museutils.js" type="text/javascript"></script>
+  <script src="js/muse/jquery.scrolleffects.js" type="text/javascript"></script>
+  <script src="js/muse/jquery.watch.js" type="text/javascript"></script>
+	<script>
+$(document).ready(function(){
+
+$('#pf1').registerPositionScrollEffect([{"in":[-Infinity,100],"speed":[4,-4]},{"in":[10,Infinity],"speed":[0,0]}]);
+$('#pf1_txt').registerPositionScrollEffect([{"in":[-Infinity,100],"speed":[-4,-4]},{"in":[10,Infinity],"speed":[0,0]}]);
+$('#pf2').registerPositionScrollEffect([{"in":[-Infinity,120],"speed":[4,-4]},{"in":[10,Infinity],"speed":[0,0]}]);
+$('#pf2_txt').registerPositionScrollEffect([{"in":[-Infinity,120],"speed":[-4,-4]},{"in":[10,Infinity],"speed":[0,0]}]);
+
+$('#pf1').registerOpacityScrollEffect([{"fade":50,"in":[-Infinity,50],"opacity":0},{"opacity":100,"in":[0,0]},{"fade":50,"in":[0,Infinity],"opacity":100}]);
+$('#pf1_txt').registerOpacityScrollEffect([{"fade":50,"in":[-Infinity,50],"opacity":0},{"opacity":100,"in":[0,0]},{"fade":50,"in":[0,Infinity],"opacity":100}]);
+$('#pf2').registerOpacityScrollEffect([{"fade":50,"in":[-Infinity,50],"opacity":0},{"opacity":100,"in":[0,0]},{"fade":50,"in":[0,Infinity],"opacity":100}]);
+$('#pf2_txt').registerOpacityScrollEffect([{"fade":50,"in":[-Infinity,50],"opacity":0},{"opacity":100,"in":[0,0]},{"fade":50,"in":[0,Infinity],"opacity":100}]);
+
+
+});
+</script>

@@ -1,0 +1,40 @@
+<%
+@Breadcrumbs.where(:lcl_name => "vi_series").each do |bc|
+	
+	meta title: bc.title,
+	description: truncate(bc.description, length: 100),
+	keywords: %w(bc.keywords),
+	reverse: true,
+	canonical: bc.web_url
+
+%>
+<div class="header_bc">
+<nav class="breadcrumbs" role="menubar" aria-label="breadcrumbs">
+	<li class="unavailable"  aria-disabled="true">>></li>
+    <li role="menuitem"><a href="/">Home</a></li>
+    <li role="menuitem"><a href="/products">Products</a></li>
+    <li role="menuitem" class="current"><a href="#"><%= bc.title %></a></li>
+</nav>
+</div>
+<% end %>
+<div class="row">
+	<div class="small-12 columns">
+		<ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
+		
+			
+  				<b><%= bc.title %></b><BR><BR><BR>
+  					<% @products.where(:product_sub_category_id => pc.product_sub_category_id ).each do |p| %>
+  					<li><%= p.name %></li>
+  					<% end %>
+  				
+  				
+
+		</ul>
+	</div>
+	<div class="small-12 columns">
+		
+			Discontinued products
+		
+	</div>	
+
+</div>

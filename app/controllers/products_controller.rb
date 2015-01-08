@@ -1,74 +1,75 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
-
+  before_filter :set_nav_and_footer_links
+  
   # GET /products
-  # GET /products.json
   def index
     @products = Product.all
   end
 
   # GET /products/1
-  # GET /products/1.json
   def show
+    @products = Product.where(slug: params[:id]).first || Product.find(params[:id])
   end
 
-  # GET /products/new
-  def new
-    @product = Product.new
+  def support_services
+    #TBC launch
   end
 
-  # GET /products/1/edit
-  def edit
+  # PRODUCT CATEGORIES ########################
+  
+  def mixing_consoles
+     @products = Product.all_with_prod_cat_id(1)
   end
 
-  # POST /products
-  # POST /products.json
-  def create
-    @product = Product.new(product_params)
-
-    respond_to do |format|
-      if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
-        format.json { render :show, status: :created, location: @product }
-      else
-        format.html { render :new }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
-    end
+  def stageboxes
+    @products = Product.all_with_prod_cat_id(2)
   end
-
-  # PATCH/PUT /products/1
-  # PATCH/PUT /products/1.json
-  def update
-    respond_to do |format|
-      if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
-        format.json { render :show, status: :ok, location: @product }
-      else
-        format.html { render :edit }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
-    end
+  
+  def option_cards
+    @products = Product.all_with_prod_cat_id(3)
   end
-
-  # DELETE /products/1
-  # DELETE /products/1.json
-  def destroy
-    @product.destroy
-    respond_to do |format|
-      format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+  
+  def recording_interfaces
+    @products = Product.all_with_prod_cat_id(4)
   end
+  
+  def plugins
+    @products = Product.all_with_prod_cat_id(5)
+  end
+  
+  def mobile_apps
+    @products = Product.all_with_prod_cat_id(6)
+  end
+  
+  def accessories
+    @products = Product.all_with_prod_cat_id(7)
+  end  
+  
+  
+  # SUB CATEGORIES (PRODUCT SERIES)
+  
+  def vi_series
+    @products = Product.all_with_prod_sub_cat_id(1)
+  end
+  
+  def si_series
+    @products = Product.all_with_prod_sub_cat_id(2)
+  end  
+  
+  def gb_series
+    @products = Product.all_with_prod_sub_cat_id(6)
+  end
+  
+  def china_only
+    @products = Product.all_with_prod_sub_cat_id(15)
+  end  
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_product
-      @product = Product.find(params[:id])
-    end
+  
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def product_params
-      params.require(:product).permit(:name, :description, :short_description, :image, :live, :hidden)
-    end
+    #def product_params
+    #  params.require(:product).permit(:name, :description, :short_description, :image, :live, :hidden)
+    #end
+    
 end

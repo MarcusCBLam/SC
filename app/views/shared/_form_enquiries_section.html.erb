@@ -1,0 +1,34 @@
+<%= f.fields_for :users_enquiries do |builder| %>
+<div>
+	<div class="row">
+		<div class="small-6 columns">
+			<%= cache ["registerable_enuiries", website.brand, I18n.locale] do %>
+			<label>Enquiry Type <small>required</small>
+			<%= builder.collection_select :enquiry_id, 
+			Enquiry.all_for_website(), 
+			:id, :name, prompt: true, required: '' %>
+			</label>
+			<small class="error">Enquiry type is required.</small>
+			<% end %>
+		</div>
+		<div class="small-6 columns">
+			<%= cache ["registerable_products", website.brand, I18n.locale] do %>
+			<%= builder.label :product_id %>
+			<%= builder.collection_select :product_id, 
+			Product.all_for_website_registration(), 
+			:id, :name, prompt: true %>
+			<% end %>
+		</div>
+	</div>
+	<div width="60%">
+		<label>Subject <small>required</small>
+		<%= builder.text_field :subject, required: '', pattern: "[a-zA-Z]+" %>
+		</label>
+		<small class="error">Subject is required.</small>
+	</div>
+	<div width="100%">
+		<%= builder.label :message %>
+		<%= builder.text_area :message, size: "40x5" %>
+	</div>
+</div>
+<% end %>

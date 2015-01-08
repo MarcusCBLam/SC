@@ -1,0 +1,21 @@
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<script type="text/javascript" charset="utf-8" src="http://animate.adobe.com/runtime/5.0.1/edge.5.0.1.min.js"></script>
+<style>
+    .edgeLoad-EDGE-194182076 { visibility:hidden; }
+</style>
+<%
+# TO-DO: store in database
+edge_js = "test2"
+s3_path = "/edge/homepage/"
+edge_url = "http://" + ENV['S3_HOST_NAME'] + s3_path + edge_js
+%>
+<script>
+   AdobeEdge.loadComposition('<%= edge_url %>', 'EDGE-194182076', {
+    scaleToFit: "width",
+    centerStage: "vertical",
+    minW: "0px",
+    maxW: "undefined",
+    width: "1200px",
+    height: "500px"
+}, {"dom":{}}, {"dom":{}});
+</script>

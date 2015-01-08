@@ -14,3 +14,12 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+/config/database.yml
+/config/application.yml
+/config/secrets.yml
+
+/app/views/devise/*
+/public/edge/*
+/pubic/images/*
+
