@@ -1,50 +1,27 @@
 class MainController < ApplicationController
-  #skip_before_filter :verify_authenticity_token
-  #before_filter :set_locale, except: [:sitemap, :site_info, :favicon]
-  helper :all # include all helpers, all the time
+  helper :all 
   before_filter :set_nav_and_footer_links
 
-  def index
+  def search 
     
+        @query = sanatize_search_string(params[:query])
+        
+        @products = Product.search_keywords(@query)
+        @downloads = Download.search_keywords(@query)
+        @news = News.search_keywords(@query)
+        @pages = Page.search_keywords(@query)
+        @videos = Video.search_keywords(@query)
+        #@kbs = Knowledgebase.search_keywords(@query)
 
   end
   
-  def about_harman
-    
-  end
+  private
   
-  def about_soundcraft
+  def sanatize_search_string(search)
     
-  end
-  
-  def imprint
-    
-  end
-
-def legal
-  
-  
-end
-
-  def privacy_policy
-    
-    
-  end
-  
-  def mailing_list
-    
-    
-  end
-  
-  def sitemap
-    
-  end
-  
-  def search
-    
-  end
-  
-  def careers
+    matchers = {  /[\/\\]/ => ' ', 
+                 '/soundcraft/i' => ' '}
+    search.gsub(/[\/\\]|soundcraft/i) { |match| matchers[match] }
     
   end
   

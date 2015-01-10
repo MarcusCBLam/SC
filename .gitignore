@@ -19,7 +19,7 @@
 /config/application.yml
 /config/secrets.yml
 
-/app/views/devise/*
+
 /public/edge/*
 /pubic/images/*
 

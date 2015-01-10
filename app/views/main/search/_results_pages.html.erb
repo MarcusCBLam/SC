@@ -1,0 +1,8 @@
+<a name="pages"></a>
+<h3 data-magellan-destination="pages">In our other pages:</h3>
+<%= write_search_result_records(@pages.length, "page") %> 
+<% @pages.each do |found| %>
+Webpage: <%= found.title %><br />
+URL: <%= link_to "www.soundcraft.com" + found.web_url, found.web_url %><br /><br />
+
+<% end %>

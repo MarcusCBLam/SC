@@ -28,5 +28,17 @@ module MainHelper
     end
     raw(html)
   end
+  
+  def write_search_result_records(num, page)
+    
+    if num == 0
+      "(1 " + page + " found)"
+    elsif num > 1
+       "(" + num.to_s + " " + page + "s found)"
+    else
+      "(1 " + page + " found)"
+    end
+    
+  end
  
 end

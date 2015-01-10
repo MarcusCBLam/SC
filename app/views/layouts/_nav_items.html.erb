@@ -43,4 +43,19 @@
          <% end %>
 		</ul>	
 	</li>
+	
+	<% if sda_user_signed_in? %>
+	<li class="divider"></li>
+	
+	<li class="has-dropdown" id="sda_nav_button"><%= link_to "SDA", "/sda" %>
+		<ul class="dropdown">
+		 <% @NavSDALinks.each do |lk| %>
+           <li><%= link_to t(lk.page.lcl_name), lk.page.web_url %></li>
+         <% end %>
+		</ul>	
+	</li>	
+	
+	<% end %>
+	
+	
 <% end %>

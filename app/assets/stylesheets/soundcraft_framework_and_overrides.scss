@@ -12,11 +12,18 @@ $color-main-alpha: rgba($color-main, 0.9);
 $color-soundcraft: #004666;
 $color-soundcraft-alpha: rgba($color-soundcraft, 0.9);
 
-$color-accent: #D90000; 
+/* Adobe triad colors based on soundcraft blue */
+$color-accent: #BC0B24; /* red */
 $color-accent-alpha: rgba($color-accent, 0.9);
 
-$color-accent2: #A3D900; 
+$color-accent2: #B2AB00; /* yellow */
 $color-accent2-alpha: rgba($color-accent2, 0.9);
+
+$color-accent3: #33310B; /* green, secondary to yellow */
+$color-accent3-alpha: rgba($color-accent3, 0.9);
+
+$color-accent4: #3C8DB2; /* blue, secondary to soundcraft  */
+$color-accent4-alpha: rgba($color-accent4, 0.9);
 
 $color-link: $color-gray-lighter;
 $color-link-alpha: rgba($color-link, 0.9);
@@ -188,6 +195,32 @@ form .button:hover {
   background: darken($color-soundcraft, 10%);
 }
 
+.color-main {
+  color: $color-main;
+}
+
+.color-soundcraft {
+  color: $color-soundcraft;
+}
+
+.color-accent {
+  color: $color-accent;
+}
+
+
+.color-accent2 {
+  color: $color-accent2;
+}
+
+.color-accent3 {
+  color: $color-accent3;
+}
+
+.color-accent4 {
+  color: $color-accent4;
+}
+
+
 
 @media only screen and (max-width: 720px) {
   
@@ -223,8 +256,16 @@ nav.top-bar {
    
 .top-bar input {
   background-color: white; 
-  border: none;
   border-radius: $border-radius;
+ 
+}
+
+a.button.expand {
+  
+  color: white;
+  border-radius: 5px;
+ 
+  
 }
 
 .top-bar .name h1 a {
@@ -294,6 +335,11 @@ nav.top-bar {
   
   #above_nav {
     height: 25px;
+  }
+  
+  #sda_nav_button {
+    
+    background: $color-gray_dark;
   }
   
 @media only screen and (max-width: 720px) {
@@ -403,6 +449,17 @@ div#social_bar {
   }
 
 /* homepage #################### */
+
+.tagline {
+  margin: 50px 0px 50px 0px;
+  padding: 10px;
+  font-size: 2.5em;
+  font-weight: $font-light;
+  border-bottom: solid 1px $color-gray-medium;
+  color: $color-gray-medium;
+ 
+  
+}
 
 #homepage_news {
    padding: 10px 0px 10px 0px;
@@ -844,6 +901,20 @@ button.radius, .button.radius {
   font-size: 20px;
   text-align: left;
 
+}
+
+/* SDA SECTION ========================== */
+
+.sda_box {
+  border: solid 1px $color-accent2;
+  border-radius: $border-radius;
+  padding: 20px;
+  
+}
+
+.alert_text {
+  
+  color: $color-accent;
 }
 
 

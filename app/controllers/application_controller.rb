@@ -8,15 +8,12 @@ class ApplicationController < ActionController::Base
 
   def set_layout
     template = 'application'
-    if (website && website.folder) 
-      controller_brand_specific = "layouts/#{controller_path}"
-      brand_specific = "layouts/application"
-      homepage = "layouts/home"
-      p "controller/application_controller.rb : def set_layout TRUE"
-    else
-      p "controller/application_controller.rb : def set_layout FALSE"
-    end
-    template
+    #if (website && website.folder) 
+    #  controller_brand_specific = "layouts/#{controller_path}"
+    #  brand_specific = "layouts/application"
+    #  homepage = "layouts/home"
+    #end  
+   # template
   end
 
   def render_template(options={})
@@ -81,10 +78,33 @@ helper_method :website
      @NavMediaLinks       = MenuPage.includes(:page).where(menu: "header-media").order(:position)
      @NavWhatsOnLinks     = MenuPage.includes(:page).where(menu: "header-whats-on").order(:position)
      @NavSupportLinks     = MenuPage.includes(:page).where(menu: "header-support").order(:position)
-     
+     @NavSDALinks         = MenuPage.includes(:page).where(menu: "header-sda").order(:position)
      
   end
-      
+  
+  def geoip
+    
+    require 'geoip'
+    #@info = GeoIP.new(Rails.root.join("GeoLiteCity.dat")).city(ip_request_params[:host])
+    #@info = GeoIP.new(Rails.root.join("GeoLiteCity.dat")).city(request.remote_ip)
+    @geoip = GeoIP.new(Rails.root.join("GeoLiteCity.dat")).city('82.31.117.27')
+    
+      #def ip_request_params
+      #params.require(:request).permit(:host)
+      #end
+  
+  end
+ 
+
+  #DEVISE
+  # Overwriting the sign_out redirect path method
+  def after_sign_out_path_for(resource_or_scope)
+   sda_user_root_path
+  end
+
+ 
+
+
   
 end
 

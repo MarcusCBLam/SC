@@ -1,5 +1,5 @@
 <%
-	@meta = Page.find_by lcl_name: 'product_registration'
+	@meta = Page.find_by lcl_name: 'where_to_buy'
 	meta title: 	@meta.title,
 	description: 	strip_html(@meta.description),
 	keywords: 		@meta.keywords.gsub(" ", ",")
@@ -18,10 +18,10 @@
 <h1> where to buy </h1>	
 
 <h1>Here are your details, am I correct?</h1>
-<b>IP:&nbsp;&nbsp;</b><%= @info.request %><br />
-<b>Country:&nbsp;&nbsp;</b><%= @info.country_name %><br />
-<b>City:&nbsp;&nbsp;</b><%= @info.city_name %><br />
-<b>Region:&nbsp;&nbsp;</b><%= @info.real_region_name %>
+<b>IP:&nbsp;&nbsp;</b><%= @geoip.request %><br />
+<b>Country:&nbsp;&nbsp;</b><%= @geoip.country_name %><br />
+<b>City:&nbsp;&nbsp;</b><%= @geoip.city_name %><br />
+<b>Region:&nbsp;&nbsp;</b><%= @geoip.real_region_name %>
 <br>
 <br>
 <br>

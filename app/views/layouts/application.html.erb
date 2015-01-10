@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+	<head>
+		<%= cache ["meta_tags", request.url] do %>
+			<%= metamagic %>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+			<meta name="author" content="Soundcraft by Harman">
+			<meta name="reverse" content="true">
+			<meta name="canonical:" content="<%= request.original_url %>"> 	
+			<meta property="og:site_name" content="Soundcraft" />
+			<meta property="og:locale" content="<%= I18n.locale %>" />
+			<meta property="og:url" content="<%= request.url %>" />
+			<% if File.exists?(Rails.root.join("app", "assets", "images", website.folder, "logo.png")) %>
+			<meta property="og:image" content="<%= image_url("#{website.folder}/logo.png") %>" />
+			<link rel="image_src" href="<%= image_url("#{website.folder}/logo.png") %>" />
+			<% end %>
+			<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+			<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+			<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,400italic' rel='stylesheet' type='text/css'>
+			
+		<% end %>
+		<%= app_meta_tags() %>		
+		<%= csrf_meta_tag %>
+		
+		<%= javascript_include_tag "application"  %>
+		<%= stylesheet_link_tag "application", media: :all %>
+
+	
+<%= render_partial "shared/analytics" %>
+	</head>
+	<body data-brand="<%= website.brand.name %>">
+	<div id="above_nav"></div>	
+<script type="text/javascript">
+   document.documentElement.className += ' js';
+</script>
+	<%= render_partial 'layouts/nav' %>
+	<div id="topper">
+	<%= yield %>	
+	<%= render_partial 'layouts/footer' %>
+	<%= render_partial 'shared/footer_jquery_scrollup' %>
+	</div>
+	</body>
+</html>

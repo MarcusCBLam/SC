@@ -1,0 +1,20 @@
+<a name="products"></a>
+<h3 data-magellan-destination="products">Products Results:</h3>
+ <%= write_search_result_records(@products.length, "product") %> 
+<%= write_search_result_records(@downloads.length, "download") %> 
+<table>
+<% @products.each do |product| %>
+
+<tr>
+	<td>
+		<%= link_to(product.name.html_safe, product_path(product, locale: I18n.locale))  %>
+	</td>
+	<td>
+	<% product.downloads.get_all_for_product(product.id, @query).each do |d| %>
+  		<%= d.title %><br>
+  	<% end %>
+	</td>
+</tr>
+
+<% end %>
+</table>

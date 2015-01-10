@@ -53,4 +53,15 @@ class News < ActiveRecord::Base
     "#{I18n.l(self.created_at.to_date, format: :long)} - #{self.body}"
   end
   
+  def self.search_keywords(search)
+    
+    search_length = search.split.length
+    if search_length > 1
+      where(live: 1).where([(['keywords LIKE ?'] * search_length).join(' AND ')] + search.split.map { |name| "%#{name}%" }).order(post_on: :desc ).first(100)
+    else
+      where("keywords LIKE ? AND live = ?", "%#{search}%", 1).order(post_on: :desc ).first(100)
+    end
+    
+  end
+  
 end

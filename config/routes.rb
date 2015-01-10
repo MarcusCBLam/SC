@@ -1,17 +1,38 @@
 Rails.application.routes.draw do
   
-  devise_for :sda_users
-  devise_for :users
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
  # debugging help
   #get "/site_info" => 'main#site_info'
   
-  #get '/favicon.ico' => 'main#favicon'
+  get '/favicon.ico' => 'main#favicon'
   #get '/dashboard' => 'admin#index', as: :dashboard
   #get "/admin" => "admin#index", as: :admin_root, locale: I18n.default_locale
-
+  
+ 
+    
+    # SDA Devise SECTION #########################################
+    get '/sda' => 'sda#index', as: :sda_user_root
+    devise_for :sda_users, 
+         path: "sda",
+      class_name: "SdaUser",
+      controllers: {
+        sessions: "sda/users/sessions",
+        registrations: "sda/users/registrations",
+        confirmations: "sda/users/confirmations",
+        passwords: "sda/users/passwords",
+        unlocks: "sda/users/unlocks"
+      }
+ 
+    as :sda_user do
+      get '/sda/login' => 'sda/users/sessions#new', :as => :new_user_session
+      post '/sda/login' => 'sda/users/sessions#create', :as => :user_session
+      #delete '/sda/logout' => 'sda/users/sessions#destroy', :as => :destroy_user_session  
+      get '/sda/logout' => 'sda/users/sessions#destroy', :as => :sda_logout
+               
+    end
 
   # main routing ##############################################
    root 'main#index'
@@ -87,7 +108,7 @@ Rails.application.routes.draw do
     get '/imprint' => 'main#imprint', as: :imprint
     get '/legal' => 'main#legal', as: :legal
     get '/privacy-policy' => 'main#privacy_policy', as: :privacy_policy
-    get '/sda' => 'sda#index', as: :sda 
+    #get '/sda' => 'sda#index', as: :sda 
     
     get '/mixing-with-professionals/mwp-calendar' => 'mixing_with_professionals#mwp_calendar', as: :mwp_calendar
     get '/guide-to-mixing' => 'guide_to_mixing#index', as: :guide_to_mixing
