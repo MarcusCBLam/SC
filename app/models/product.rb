@@ -3,10 +3,17 @@ class Product < ActiveRecord::Base
   friendly_id :name, use: :slugged
 
   has_attached_file :image, styles: {
-    thumb: '200x100>',
-    medium: '400x200>'
+    main: '800x400>',
+    medium: '400x200>',
+    thumb: '150x75>'
+  },
+  :path => "products/:style/:filename",
+  :url => ':s3_domain_url'
+
+  has_attached_file :image2, styles: {
+    thumb: '150x75>'
   } ,
-  :path => "images/products/:style/:filename",
+  :path => "products/:style/:filename",
   :url => ':s3_domain_url'
 
   
@@ -20,6 +27,16 @@ class Product < ActiveRecord::Base
   
   has_many :downloads, through: :products_download
   has_many :products_download, dependent: :destroy
+  
+  has_many :products_images, dependent: :destroy
+  
+  has_many :applications, through: :products_application
+  has_many :products_applications, dependent: :destroy
+  
+  has_many :sections, through: :products_section
+  has_many :products_sections, dependent: :destroy
+  
+  has_many :videos, through: :products_video
     
 
   
@@ -43,6 +60,23 @@ class Product < ActiveRecord::Base
     else
       where("keywords LIKE ? AND live = ?", "%#{search}%", 1)
     end
+    
+  end
+  
+  def self.get_related_products(product)
+    
+    if product.product_sub_category_id == 4 || product.product_sub_category_id == 5
+      where(live: 1,
+      product_category_id: product.product_category_id, 
+      :product_sub_category_id => [4,5])
+      .where.not(id: product.id).order(:position)
+    else
+      where(live: 1,
+      product_category_id: product.product_category_id, 
+      product_sub_category_id: product.product_sub_category_id)
+      .where.not(id: product.id).order(:position)
+    end
+
     
   end
   

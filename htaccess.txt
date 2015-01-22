@@ -1,0 +1,10 @@
+
+
+### FORCE FILE TO DOWNLOAD INSTEAD OF APPEAR IN BROWSER
+AddType application/octet-stream .mov .mp3 .zip .pdf .jpg .png
+
+
+### REDIRECTIONS FOR OLD PAGES
+
+Redirect /olddirectory/oldfile.html http://example.com/newdirectory/newfile.html
+

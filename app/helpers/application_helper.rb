@@ -178,11 +178,11 @@ module ApplicationHelper
     links = []
    
     social_links = [
-      {name: "twitter",    web: "http://www.soundcraft.com"},
-      {name: "facebook",    web: "http://www.soundcraft.com"},
-      {name: "youtube",    web: "http://www.soundcraft.com"},
-      {name: "linkedin",  web: "http://www.soundcraft.com"},
-      {name: "instagram",  web: "http://www.soundcraft.com"}
+      {name: "facebook",    web: ENV['FACEBOOK_URL']},
+      {name: "twitter",    web: ENV['TWITTER_URL']},
+      {name: "youtube",    web: ENV['YOUTUBE_URL']},
+      {name: "linkedin",  web: ENV['LINKEDIN_URL']},
+      {name: "instagram",  web: ENV['INSTAGRAM_URL']}
     ]
     social_links.each do |b|
         links << link_to(image_tag("social/social-gray-#{b[:name].downcase}.png", alt: b[:name], class: "no-resize hover_up"), b[:web], target: "_blank") 
@@ -214,18 +214,19 @@ module ApplicationHelper
             child_content_tags << create_product_sub_category_nav_links(cat.id,cat.name,cat_name)
           end
           
-          if cat_id == 1
-            child_content_tags << content_tag(:li, link_to("Discontinued Products", "/products/discontinued-products"))
-          end
+          #temporarily disable discontinued products I have more time.
+          #if cat_id == 1
+          #  child_content_tags << content_tag(:li, link_to("Discontinued Products", "/products/discontinued-products"))
+          #end
           
-          parent_tag = content_tag(:a, cat_name, href: "/products/#{cat_name.gsub(" ", "-")}")
+          parent_tag = content_tag(:a, cat_name, href: "/products/#{urlise(cat_name)}")
           ul_tag = content_tag(:ul, child_content_tags.html_safe, class: "dropdown")
           content_tag(:li , parent_tag + ul_tag, class: "has-dropdown")
          
         else
     
            products_content_tags = create_product_nav_links("category", cat_id, cat_name)
-           parent_tag = content_tag(:a, cat_name, href: "/products/#{cat_name.gsub(" ", "-")}")
+           parent_tag = content_tag(:a, cat_name, href: "/products/#{urlise(cat_name)}")
            ul_tag = content_tag(:ul, products_content_tags.html_safe, class: "dropdown")
            content_tag(:li , parent_tag + ul_tag, class: "has-dropdown")
            
@@ -238,7 +239,7 @@ module ApplicationHelper
  def create_product_sub_category_nav_links (sub_cat_id,sub_cat_name, cat_name)
    
        child_content_tags = create_product_nav_links("sub-category", sub_cat_id, sub_cat_name)
-       parent_tag = content_tag(:a, sub_cat_name, href: "/products/#{cat_name.gsub(" ", "-")}/#{sub_cat_name.gsub(" ", "-")}")
+       parent_tag = content_tag(:a, sub_cat_name, href: "/products/#{urlise(cat_name)}/#{urlise(sub_cat_name)}")
        ul_tag = content_tag(:ul, child_content_tags.html_safe, class: "dropdown")
        content_tag(:li , parent_tag + ul_tag, class: "has-dropdown")
 
@@ -254,7 +255,7 @@ module ApplicationHelper
    end  
 
    @product.each do |prod|     
-      products_content_tags << content_tag(:li, link_to(prod.name, "/products/#{prod.name.gsub(" ", "-")}"))
+      products_content_tags << content_tag(:li, link_to(prod.name, "/products/#{urlise(prod.name)}"))
    end
       
    return  products_content_tags
@@ -275,7 +276,7 @@ module ApplicationHelper
             end
               
           end
-             parent_tag = content_tag(:a, cat_name, href: cat_name)
+             parent_tag = content_tag(:a, cat_name, href: cat_name.gsub(" ", "-").downcase)
              ul_tag = content_tag(:ul, child_content_tags.html_safe, class: "dropdown")
              content_tag(:li , parent_tag + ul_tag, class: "has-dropdown")
         end
@@ -283,6 +284,10 @@ module ApplicationHelper
  
  def prefix_brand(product)
    branded = website.brand.name + ' ' + product
+ end
+ 
+ def urlise(str)
+   urlised = str.gsub(" ", "-").downcase
  end
   
 end

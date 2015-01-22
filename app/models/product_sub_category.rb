@@ -7,4 +7,5 @@ class ProductSubCategory < ActiveRecord::Base
     
     where(product_category_id: cat_id).where(live: 1).order(:position)
   end
+  
 end

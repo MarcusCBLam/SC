@@ -71,23 +71,24 @@ helper_method :website
      @ProductCategories   = ProductCategory.where(live: 1).order(:position)
      @Product             = Product.where(live: 1, hidden: 0).order(:position)
      
-     @FooterAboutUsLinks  = MenuPage.includes(:page).where(menu: "footer-about-us").order(:position)
-     @FooterSupportLinks  = MenuPage.includes(:page).where(menu: "footer-support").order(:position)
-     @FooterMWPLinks      = MenuPage.includes(:page).where(menu: "footer-mwp").order(:position)
+     @FooterAboutUsLinks  = MenuPage.includes(:page).where(live: 1).where(menu: "footer-about-us").order(:position)
+     @FooterSupportLinks  = MenuPage.includes(:page).where(live: 1).where(menu: "footer-support").order(:position)
+     @FooterMWPLinks      = MenuPage.includes(:page).where(live: 1).where(menu: "footer-mwp").order(:position)
      
-     @NavMediaLinks       = MenuPage.includes(:page).where(menu: "header-media").order(:position)
-     @NavWhatsOnLinks     = MenuPage.includes(:page).where(menu: "header-whats-on").order(:position)
-     @NavSupportLinks     = MenuPage.includes(:page).where(menu: "header-support").order(:position)
-     @NavSDALinks         = MenuPage.includes(:page).where(menu: "header-sda").order(:position)
+     @NavMediaLinks       = MenuPage.includes(:page).where(live: 1).where(menu: "header-media").order(:position)
+     @NavWhatsOnLinks     = MenuPage.includes(:page).where(live: 1).where(menu: "header-whats-on").order(:position)
+     @NavSupportLinks     = MenuPage.includes(:page).where(live: 1).where(live: 1).where(menu: "header-support").order(:position)
+     @NavSDALinks         = MenuPage.includes(:page).where(live: 1).where(menu: "header-sda").order(:position)
      
   end
   
   def geoip
     
     require 'geoip'
+    #ip = request.remote_ip
+    ip = '82.31.117.27'
     #@info = GeoIP.new(Rails.root.join("GeoLiteCity.dat")).city(ip_request_params[:host])
-    #@info = GeoIP.new(Rails.root.join("GeoLiteCity.dat")).city(request.remote_ip)
-    @geoip = GeoIP.new(Rails.root.join("GeoLiteCity.dat")).city('82.31.117.27')
+    @geoip = GeoIP.new(Rails.root.join("GeoLiteCity.dat")).city(ip)
     
       #def ip_request_params
       #params.require(:request).permit(:host)

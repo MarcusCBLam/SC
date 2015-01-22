@@ -1,9 +1,10 @@
 class Country < ActiveRecord::Base
   
   has_many :users
+  has_many :distributors
 
   def self.all_for_website()
-    where(live: 1).order(:name)
+    order(:position, :name)
   end
   
 end

@@ -1,13 +1,51 @@
 <%
 	@meta = Page.find_by lcl_name: 'about_soundcraft'
-	meta title: 	@meta.title,
-	description: 	strip_html(@meta.description),
-	keywords: 		@meta.keywords.gsub(" ", ",")
+	meta title: @meta.title,
+	description: strip_html(@meta.description),
+	keywords: @meta.keywords.gsub(" ", ",")
+
 %>
-<div class="header_bc">
+<div id="header_bc">
+	<div id="header_spacer"></div>
+	<div id="header_bc_image" >
+	<%= image_tag('top_border.gif') %>
+	</div>
+	<div id="bc">
 	<nav class="breadcrumbs" role="menubar" aria-label="breadcrumbs">
 		<li class="unavailable"  aria-disabled="true">>></li>
 	    <li role="menuitem"><a href="/">Home</a></li>
 	    <li role="menuitem" class="current"><a href="#"><%= @meta.title %></a></li>
 	</nav>
+	</div>
 </div>
+<div class="row fullWidth">
+	<div class="small-12 columns" >
+		<br />
+		<h1><%= @meta.title %></h1>
+	</div>
+</div>
+
+<div class="row">
+	<div class="small-12 columns" >
+Founded in 1973, Soundcraft first made its mark with the launch of the Series 1, the first mixing console in a flightcase. Back in the early 70's, the music touring business was just beginning - and the transportable mixing desk quickly became popular among the bands and the new PA companies that were springing up to rent out sound equipment. <br>
+<br>
+From what was then a small company in central London, Soundcraft expanded and started to diversify. The company designed a mixer for recording - the Series 2 - and began to build a reputation for great-sounding desks, which is often referred to as the favoured 'British Sound'. <br>
+<br>
+Design and innovation has always been one of Soundcraft's major strengths. Over the years it has introduced a number of industry-favoured consoles such as the Broadway, GB Series, MH series, Vi Series and the Si Series. <br>
+<br>
+Today Soundcraft has a network of over 100 distributors selling and supporting its products world-wide. Part of the Harman Pro Group, Soundcraft is still very much the dedicated professional mixing console designer and manufacturer it was back in 1973. It now boasts a range of mixers which are designed for use in live sound, recording, post-production, TV and radio production and disco applications. <br>
+<br>
+<p>Harman is an international company which comprises a group of dedicated manufacturers of audio equipment spanning professional audio, in-car systems, multimedia and hi-fi consumer products.</p>
+<p>Soundcraft is part of the Professional area of Harman and has many sister companies.</p>
+
+<div class="flex-video">
+   <iframe width="600" height="400" src="//www.youtube.com/embed/IRqRvEVNOYA" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowfullscreen></iframe>
+</div>
+
+	</div>
+</div>
+
+
+
+
+

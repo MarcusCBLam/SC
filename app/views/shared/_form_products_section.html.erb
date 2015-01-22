@@ -1,62 +1,62 @@
 <%= f.fields_for :users_products do |builder| %>
-<div  style="background: green;" >
+<div class="web-form-section" >
 <div class="row">
 	<div class="small-6 columns">
 		
 		<div>
 			<%= cache ["registerable_products", website.brand, I18n.locale] do %>
-			<label>Product <small>required</small>
+			<label>Product <small class="color-accent">(required field)</small></label>
 			<%= builder.collection_select :product_id, 
 			Product.all_for_website_registration(), 
 			:id, :name, prompt: true, required: '' %>
-			</label>
+			
     		<small class="error">Product is required.</small>
 			<% end %>	
 		</div>
 		<div>
-			<label>Serial Number <small>required</small>
+			<label>Serial Number <small class="color-accent">(required field)</small></label>
 			<%= builder.text_field :serial, required: '', pattern: "[a-zA-Z]+" %>
-			</label>
+			
     		<small class="error">Serial Number is required.</small>
 		</div>
 		<div>&nbsp;</div>
 		<div>
 			<%= cache ["registerable_applications", website.brand, I18n.locale] do %>
-			<%= builder.label :application_id %>
+			<label>What is your main application for the product?</label>
 			<%= builder.collection_select :application_id, 
 			Application.all_for_website_registration(), 
 			:id, :name, prompt: true %>
 			<% end %>	
 		</div>
 		<div>
-			<%= builder.label :influence %>
+			<label>What influenced you on your purchase?</label>
 			<%= builder.text_field :influence %>
 		</div>
 		<div>
-			<%= builder.label :hear_from %>
+			<label>How did you hear about the product?</label>
 			<%= builder.text_field :hear_from %>
 		</div>
 		
 	</div>	
 	<div class="small-6 columns">
 		<div>
-			<label>Purchase Date <small>required</small>
+			<label>Purchase Date <small class="color-accent">(required field)</small></label>
 			<%= builder.date_field :purchased_date, required: '' %>
-			</label>
+			
     		<small class="error">Purchase date is required.</small>
 		</div>
 		<div>
-			<%= builder.label :purchased_from %>
+			<label>Who did you buy the product from?</label>
 			<%= builder.text_field :purchased_from %>
 		</div>
 		<div>
-			<%= builder.label :purchased_amount %>
+			<label>How much did you paid?</label>
 			<%= builder.text_field :purchased_amount %>
 		</div>
 	</div>
 </div>
 <div>
-	<%= builder.label :comment %>
+	<label>Is there anything else you would like to tell us?</label>
 	<%= builder.text_area :comment, size: "40x5" %>
 <br />
 </div>

@@ -1,17 +1,16 @@
 <div class="row fullWidth ">
 	<div class="small-1 column left_tag">&nbsp;</div>
-	<div class="small-9 medium-6 large-3 column left_tag end" >
-	  Soundcraft Si Impact
+	<div class="small-11 medium-9 large-6 column left_tag end" >
+	  <h1 class="product_title"><%= prefix_brand(@products.name) %></h1>
 	</div>
 </div>
 <div class="row fullWidth">
 	<div class="small-1 column ">&nbsp;</div>
 	<div class="small-10 column  end" >
-	  <h4>
-	  	40 input Digial Mixing Xonsle and USn inteface and Ipad 
-	  </h4>
+	  <h3><%= @products.headline %></h3>
 
-	  Lorem ipsum dolor sit amet, viverra ut. Amet adipiscing ut tincidunt, consectetuer ut dis, laoreet elementum odio bibendum pellentesque proin. Urna blandit suscipit curabitur hac blanditiis leo. Ac dictum ac amet tellus vestibulum, quis lorem orci varius lectus lacus, morbi vel viverra, ac lectus integer, dui in libero wisi massa quis risus. Amet donec.
+	<%= @products.short_description.html_safe %>
 <br /><br />
-	</div>
+
+</div>
 </div>

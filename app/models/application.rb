@@ -2,6 +2,8 @@ class Application < ActiveRecord::Base
 
 
   has_many :users_products, :dependent => :destroy
+  has_many :products, through: :products_application
+  has_many :products_applications, dependent: :destroy
   
 
 

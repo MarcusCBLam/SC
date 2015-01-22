@@ -5,7 +5,9 @@ class WhereToBuyController < ApplicationController
   
   def index
     
-
+    #@countries = Country.where(name: @geoip.country_name)
+    #@distributors = Distributor.where(country_id: 94)
+    @country_ddl = Country.order(:position, :name)
     
   end
   

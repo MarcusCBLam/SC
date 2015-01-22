@@ -1,25 +1,73 @@
 <%
-meta title: "Mixing with Professionals",
-description: "Soundcraft News",
-keywords: %w(soundcraft harman audio mixer mixing consoles),
-reverse: true
-#canonical: news_url()
+	@meta = Page.find_by lcl_name: 'tech_support'
+	meta title: @meta.title,
+	description: strip_html(@meta.description),
+	keywords: @meta.keywords.gsub(" ", ",")
+
 %>
-<div class="header_bc">
-<nav class="breadcrumbs" role="menubar" aria-label="breadcrumbs">
-	<li class="unavailable"  aria-disabled="true">>></li>
-    <li role="menuitem"><a href="#">Home</a></li>
-    <li role="menuitem" class="current"><a href="#">Mixing with professionals</a></li>
-</nav>
+<div id="header_bc">
+	<div id="header_spacer"></div>
+	<div id="header_bc_image" >
+	<%= image_tag('top_border.gif') %>
+	</div>
+	<div id="bc">
+	<nav class="breadcrumbs" role="menubar" aria-label="breadcrumbs">
+		<li class="unavailable"  aria-disabled="true">>></li>
+	    <li role="menuitem"><a href="/">Home</a></li>
+	    <li role="menuitem" class="current"><a href="#"><%= @meta.title %></a></li>
+	</nav>
+	</div>
 </div>
-<div class="row">
-<div class="small-12 columns" >
-	<br>
-<br>
-<br>
+<div class="row fullWidth">
+	<div class="small-12 columns" >
+		<br />
+		<h1><%= @meta.title %></h1>
+	</div>
+</div>
+
+<div class="row fullWidth">
 	
-mixing with professionals
-<br>
-<br>
-</div>
+	<div class="small-12 large-6 columns" >
+		<h3>Worldwide Support</h3>
+		<div class="div-border" style="background: #EEEEEE">
+		For all worldwide support, please contact a member of our UK Customer Service Department:
+		<table>
+		<tr>
+		<td>Martin Hutton</td><td>martin.hutton@harman.com</td><td>+44 (0) 1707 668 298</td>
+		</tr><tr>
+		<td>Ben Libby</td><td>ben.libby@harman.com</td><td>+44 (0) 1707 668 169</td>
+		</tr><tr>
+		<td>Ian Rowe</td><td>ian.rowe@harman.com</td><td>+44 (0) 1707 668 097</td>
+		</tr><tr>
+		<td>Dave Bartlett</td><td>dave.bartlett@harman.com</td><td>+44 (0) 1707 668 048</td>
+		</tr>
+		</table>
+		<div class="text-sub-header">Vi Series Consoles - Out-of-hours Technical Support</div> 
+		Out-of-hour technical phone support is available for Soundcraft Vi Series consoles, 9am - 9pm GMT daily, including weekends and public holidays. <br>
+		<br />
+		<div class="text-sub-header">Phone Support: +44 (0) 1707 668 117</div>
+		<br />
+		For all other consoles, please contact us during office hours - 9am to 5pm Monday to Friday.<br><br>
+		</div>
+	</div>	
+	
+	
+	<div class="small-12 large-6 columns" >
+		<h3>USA Only Support</h3>
+		<div class="div-border" style="background: #EEEEEE"> <br />
+		  <div class="text-sub-header">Phone Support: 818 920 3292</div> 
+		</div>
+		<br />
+		<h3>Soundcraft Distributors</h3>
+		<div class="div-border" style="background: #EEEEEE">
+		In addition to our worldwide support from the UK and USA, your local Soundcraft Distributors can also provide you with local technical support. To find your nearest Soundcraft Distributor, click the link below.
+		<br /><a href="/where-to-buy" class="button radius">Soundcraft Distributors</a>
+		</div>
+		<br />
+		<h3>Warranty</h3>
+		<div class="div-border" style="background: #EEEEEE"> <br />
+		<a href="/support/warranty" class="button radius">Click here for product warranty</a>
+		</div>
+		
+	</div>
 </div>

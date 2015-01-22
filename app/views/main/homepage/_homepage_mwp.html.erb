@@ -1,29 +1,39 @@
-<div class="section_bg1 row">	
-	<div class="small-4 large-4 columns">
-		<%= link_to(image_tag("/images/test/mwp_logo.png", alt: "Mixing with Professionals"), "#", class: "transparent") %>
-	</div>
-	<div class="small-2 large-2 columns" align="left">
-		<div class="cf">
-		<%= link_to(image_tag("/images/test/mwp_calendar_o.png", alt: "MWP Calendar", class: "bottom" ), "#", class: "transparent") %>
-		<%= link_to(image_tag("/images/test/mwp_calendar.png", alt: "MWP Calendar", class: "top"), "#", class: "transparent") %>
-		</div>
-	</div>
-	<div class="small-2 large-2 columns" align="left">
-		<div class="cf">
-		<%= link_to(image_tag("/images/test/mwp_training_o.png", alt: "MWP Training", class: "bottom"), "#", class: "transparent") %>
-		<%= link_to(image_tag("/images/test/mwp_training.png", alt: "MWP Training", class: "top"), "#", class: "transparent") %>
-		</div>
-	</div>
-	<div class="small-2 large-2 columns" align="left">
-		<div class="cf">
-		<%= link_to(image_tag("/images/test/mwp_rental_o.png", alt: "Rental Companies", class: "bottom"), "#", class: "transparent") %>
-		<%= link_to(image_tag("/images/test/mwp_rental.png", alt: "Rental Companies", class: "top"), "#", class: "transparent") %>
-		</div>
-	</div>
-	<div class="small-2 large-2 columns" align="left">
-		<div class="cf">
-		<%= link_to(image_tag("/images/test/mwp_videos_o.png", alt: "Videos", class: "bottom"), "#", class: "transparent") %>
-		<%= link_to(image_tag("/images/test/mwp_videos.png", alt: "Videos", class: "top"), "#", class: "transparent") %>
+<div class="row ">	
+
+	<div class="small-12 large-centered columns mwp">
+		<div class="row collapse">
+			<div class="small-4 columns">
+				<a href="/mixing-with-professionals"><img src="<%= s3_homepage_path %>homepage_mwp.jpg" class="fade" alt="Mixing with Professionals" width="100%" /></a>
+			</div>
+			<div class="small-8 columns">
+				<div class="row">
+					<div class="small-12 columns">
+						<h3>Mixing with Professionals</h3>
+					</div>
+				</div>
+					
+				<div class="row">
+						<div class="small-12 medium-6 large-2 small-text-center columns" align="center">
+							<a href="/whats-on/events"><img id="mwp1" src="<%= s3_homepage_path %>homepage_mwp_events.jpg" class="hover_up" alt="Mixing with Professionals"  />
+							<h4>Events</h4></a>
+							</div>
+						<div class="small-12 medium-6 large-2 small-text-center columns">
+							<a href="mixing-with-professionals/training-courses"><img id="mwp2" src="<%= s3_homepage_path %>homepage_mwp_training.jpg" class="hover_up" alt="Mixing with Professionals"  />
+							<h4>training</h4></a>
+							</div>
+						<div class="small-12 medium-6 large-2 small-text-center columns">
+							<a href="/whats-on/rental"><img id="mw3" src="<%= s3_homepage_path %>homepage_mwp_rental_co.jpg" class="hover_up" alt="Mixing with Professionals"  />
+							<h4>rental co</h4></a>
+							</div>
+						<div class="small-12 mediu
+						m-6 large-2 small-text-center columns end">
+							<a href="/videos"><img id="mwp4" src="<%= s3_homepage_path %>homepage_mwp_videos.jpg" class="hover_up" alt="Mixing with Professionals"  />
+							<h4>videos</h4></a>
+							</div>
+						
+				</div>
+			</div>
+
 		</div>
 	</div>
 </div>	

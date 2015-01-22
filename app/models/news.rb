@@ -1,13 +1,11 @@
 class News < ActiveRecord::Base
   extend FriendlyId
-  friendly_id :name, use: :slugged
+  friendly_id :title, use: :slugged
 
   has_attached_file :image, styles: {
-    thumb: '100x100>',
-    square: '200x200#',
-    medium: '300x300>'
+    thumb: '200x100>'
   } ,
-  :path => "images/news/:style/:filename",
+  :path => "news/:style/:filename",
   :url => ':s3_domain_url'
 
   # Validate the attached image is image/jpg, image/png, etc
@@ -30,7 +28,7 @@ class News < ActiveRecord::Base
   def self.all_for_website(website, options={})
     
       date_range = 6.months.ago..Date.today
-      News.where(post_on: date_range)
+      where(post_on: date_range)
       .order(post_on: :desc)
 
   end
@@ -38,7 +36,7 @@ class News < ActiveRecord::Base
   # News older than 6 months
   def self.archived(website)
       
-      News.where("post_on < ?", 6.months.ago)
+      where("post_on < ?", 6.months.ago)
       .order(post_on: :desc)
 
    end
@@ -61,6 +59,12 @@ class News < ActiveRecord::Base
     else
       where("keywords LIKE ? AND live = ?", "%#{search}%", 1).order(post_on: :desc ).first(100)
     end
+    
+  end
+  
+  def self.get_articles_for_homepage
+    
+    where(live: 1).order(post_on: :desc ).first(5)
     
   end
   

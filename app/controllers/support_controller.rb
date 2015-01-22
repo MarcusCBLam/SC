@@ -11,11 +11,20 @@ class SupportController < ApplicationController
   def contact_us
     
     if request.post?
-      @user = User.new(users_enquiry_params)
-      if @user.save
-        redirect_to contact_us_path, alert: "enquiry has been sent"
-      end
+       
+      if verify_recaptcha 
+        
+         @user = User.new(users_enquiry_params)
+        if @user.save
+          # need to send email
+          flash[:notice] = "Your enquiry has been sent."
+          redirect_to contact_us_path
+
+        end
+
+      end  
     else
+      
       @user = User.new
       users_enquiry = @user.users_enquiries.build
     end
@@ -27,7 +36,8 @@ class SupportController < ApplicationController
     if request.post?
       @user = User.new(users_product_params)
       if @user.save
-        redirect_to product_registration_path, alert: "product registration was success"
+         flash[:notice] = "Thank you for registering your product. It's all done now."
+        redirect_to product_registration_path
       end
     else
       @user = User.new

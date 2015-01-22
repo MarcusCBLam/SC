@@ -4,9 +4,7 @@
 			<% @ProductCategories.each do |cat| %>
 				<%= create_product_category_nav_links(cat.id, cat.name) %>
 			<% end %>
-			<li><%= link_to t('product_registration'), "/support/product-registration" %></li>
-			<li><%= link_to t('discontinued_products'), "/products/discontinued-products" %></li>
-			<li><%= link_to t('mixing_with_professionals'), "/mixing-with-professionals" %></li>
+			
 		</ul>
 	</li>
 	
@@ -20,15 +18,6 @@
 		</ul>	
 	</li>
 	
-	<li class="divider"></li>
-	
-	<li class="has-dropdown"><%= link_to t('whats_on'), "/whats-on" %>
-		<ul class="dropdown">
-		 <% @NavWhatsOnLinks.each do |lk| %>
-           <li><%= link_to t(lk.page.lcl_name), lk.page.web_url %></li>
-         <% end %>
-		</ul>	
-	</li>
 	
 	<li class="divider"></li>
 	

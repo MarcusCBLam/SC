@@ -58,6 +58,17 @@ Rails.application.routes.draw do
             :product_sub_categories,
             :product_categories
             
+    # DOWNLOADING FROM S3 ####################################
+    
+    get "/serve-me-this/:id" => "serve_me_this#download_media", as: :serve_me_this
+    
+            
+    # PROMOTIONAL ############################################################
+    
+    get '/tnc' => redirect('/tnc/freedom-to-mix')
+    get '/tnc/freedom-to-mix' => 'main#freedom_to_mix_sweepstakes', as: :freedom_to_mix_sweepstakes
+            
+            
     # MICROSITES #############################################################
     
     get '/get-started/ui' => 'get_started#ui', as: :get_started_ui
@@ -72,10 +83,11 @@ Rails.application.routes.draw do
     get "/media" => "media#index", as: :media
     get "/videos(/:id)" => "videos#index", as: :videos
     get "videos/play/:id" => "videos#play", as: :play_video
-    get "/product-reviews(/:id)" => "product_reviews#index", as: :product_reviews
-    get "/white-papers(/:id)" => "white_papers#index", as: :white_papers
-    get "/downloads/images(/:id)" => "downloads#images", as: :images
-    get "/social-media(/:id)" => "social_media#index", as: :social_media
+    #get "/product-reviews(/:id)" => "product_reviews#index", as: :product_reviews
+    #get "/white-papers(/:id)" => "white_papers#index", as: :white_papers
+    #get "/downloads/images(/:id)" => "downloads#images", as: :images
+    #get "/social-media(/:id)" => "social_media#index", as: :social_media
+    get "/software" => "software#index", as: :software
     
     # what's on menu
     
@@ -93,17 +105,17 @@ Rails.application.routes.draw do
     # support
     
     get "/support" => "support#index", as: :support
-    get "/knowledgebase" => "knowledgebase#index", as: :knowledgebase
+    #get "/knowledgebase" => "knowledgebase#index", as: :knowledgebase
     match "/support/contact-us" => "support#contact_us", as: :contact_us, via: :all
     match "/support/product-registration" => "support#product_registration", as: :product_registration, via: :all
     get "/support/warranty" => "support#warranty", as: :warranty
     get "/support/tech-support" => "support#tech_support", as: :tech_support
-    get "/support/spare-parts" => "support#spare_parts", as: :spare_parts
-    get "/support/find-my-serial-number" => "support#find_my_serial_number", as: :find_my_serial_number  
+    #get "/support/spare-parts" => "support#spare_parts", as: :spare_parts
+    #get "/support/find-my-serial-number" => "support#find_my_serial_number", as: :find_my_serial_number  
     
     # footer links
     
-    get "/about-harman" => "main#about_harman", as: :about_harman
+    get "/experience-harman" => "main#experience_harman", as: :experience_harman
     get "/about-soundcraft" => "main#about_soundcraft", as: :about_soundcraft
     get '/imprint' => 'main#imprint', as: :imprint
     get '/legal' => 'main#legal', as: :legal
@@ -127,8 +139,8 @@ Rails.application.routes.draw do
     get '/products/recording-interfaces' => 'products#recording_interfaces', as: :recording_interfaces
     get '/products/plugins' => 'products#plugins', as: :plugins
     get '/products/mobile-apps' => 'products#mobile_apps', as: :mobile_apps
-    get '/products/accessories' => 'products#accessories', as: :accessories
-    get '/support-services' => 'products#support_services', as: :support_services
+    #get '/products/accessories' => 'products#accessories', as: :accessories
+    #get '/support-services' => 'products#support_services', as: :support_services
     
     get '/products/mixing-consoles/vi-series' => 'products#vi_series', as: :vi_series
     get '/products/mixing-consoles/si-series' => 'products#si_series', as: :si_series
@@ -136,7 +148,13 @@ Rails.application.routes.draw do
     get '/products/mixing-consoles/signature-series' => 'products#signature_series', as: :signature_series
     get '/products/mixing-consoles/signature-mtk-series' => 'products#signature_mtk_series', as: :signature_mtk_series
     get '/products/mixing-consoles/gb-series' => 'products#gb_series', as: :gb_series
-    get '/products/mixing-consoles/china' => 'products#china_only', as: :china_only
+    get '/products/mixing-consoles/epm-efx-mpm-mfx' => 'products#epm_efx_mpm_mfx', as: :epm_efx_mpm_mfx
+    get '/products/mixing-consoles/multi-purpose' => 'products#multi_purpose', as: :multi_purpose
+    get '/products/mixing-consoles/china-only' => 'products#china_only', as: :china_only
+    
+    get '/products/recording-interfaces/signature-mtk-series' => redirect('/products/mixing-consoles/signature-mtk-series')
+    
+    
     #match above else use the default for products
     resources :products, only: [:index, :show] 
     

@@ -272,6 +272,7 @@ en:
       blog_month_day: "%B %d"
       mmddyy: "%m/%d/%y"
       ddmmyy: "%d/%m/%y"
+      yyyy: "%Y"
 
   time:
     formats:

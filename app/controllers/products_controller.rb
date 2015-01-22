@@ -1,9 +1,10 @@
 class ProductsController < ApplicationController
   before_filter :set_nav_and_footer_links
+  helper :products
   
   # GET /products
   def index
-    @products = Product.all
+    @products = Product.all.order(:position)
   end
 
   # GET /products/1
@@ -41,30 +42,17 @@ class ProductsController < ApplicationController
     @products = Product.all_with_prod_cat_id(6)
   end
   
-  def accessories
-    @products = Product.all_with_prod_cat_id(7)
-  end  
   
   
   # SUB CATEGORIES (PRODUCT SERIES)
   
-  def vi_series
-    @products = Product.all_with_prod_sub_cat_id(1)
+  def product_series
+    @products = Product.all_with_prod_sub_cat_id(params[:id])
   end
   
-  def si_series
-    @products = Product.all_with_prod_sub_cat_id(2)
-  end  
-  
-  def gb_series
-    @products = Product.all_with_prod_sub_cat_id(6)
-  end
-  
-  def china_only
-    @products = Product.all_with_prod_sub_cat_id(15)
-  end  
 
   private
+  
   
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,17 +1,27 @@
 <%
 	meta title: prefix_brand(@products.name),
 	description: strip_html(@products.short_description),
-	keywords: @products.keywords.gsub(" ", ","),
-	reverse: true,
-	canonical: request.original_url
+	keywords: @products.keywords.gsub(" ", ",")
 %>
-<div class="header_bc">
-<nav class="breadcrumbs" role="menubar" aria-label="breadcrumbs">
-	<li class="unavailable"  aria-disabled="true">>></li>
-    <li role="menuitem"><a href="/">Home</a></li>
-    <li role="menuitem"><a href="/products">Products</a></li>
-    <li role="menuitem" class="current"><a href="#"><%= prefix_brand(@products.name) %></a></li>
-</nav>
+<div id="header_bc">
+	<div id="header_spacer"></div>
+	<div id="header_bc_image" >
+	<%= image_tag('top_border.gif') %>
+	</div>
+	<div id="bc">
+	<nav class="breadcrumbs" role="menubar" aria-label="breadcrumbs">
+		<li class="unavailable"  aria-disabled="true">>></li>
+	    <li role="menuitem"><a href="/">Home</a></li>
+    	<li role="menuitem"><a href="/products">Products</a></li>
+    	<% if @products.product_sub_category_id > 0 %>
+    		<li role="menuitem"><a href="/products/<%= urlise(@products.product_category.name) %>"><%= @products.product_category.name %></a></li>
+    		<li role="menuitem"><a href="/products/<%= urlise(@products.product_category.name) %>/<%= urlise(@products.product_sub_category.name) %>"><%= @products.product_sub_category.name %></a></li>
+    	<% else %>
+    		<li role="menuitem"><a href="/products/<%= urlise(@products.product_category.name) %>"><%= @products.product_category.name %></a></li>
+    	<% end %>
+    	<li role="menuitem" class="current"><a href="#"><%= prefix_brand(@products.name) %></a></li>
+	</nav>
+	</div>
 </div>
 <div id="product_image">
   <%= render_partial 'products/product_partials/product_image' %>
@@ -30,9 +40,6 @@
 </div>
 <div id="product_shortcuts">
   <%= render_partial 'products/product_partials/product_shortcuts' %>
-</div>
-<div id="product_share">
-  <%= render_partial 'products/product_partials/product_share' %>
 </div>
 <div id="product_buy_now">
   <%= render_partial 'products/product_partials/product_buy_now' %>

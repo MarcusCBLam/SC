@@ -32,11 +32,11 @@ module MainHelper
   def write_search_result_records(num, page)
     
     if num == 0
-      "(1 " + page + " found)"
+      "1 " + page + " found"
     elsif num > 1
-       "(" + num.to_s + " " + page + "s found)"
+       num.to_s + " " + page + "s found"
     else
-      "(1 " + page + " found)"
+      "1 " + page + " found"
     end
     
   end

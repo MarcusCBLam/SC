@@ -3,15 +3,16 @@ class VideosController < ApplicationController
   
   
   def index
+    
 
-      
+    if params[:id]
+      @video_cat = VideoCategory.find_by id: params[:id]
+    else
+      @video_cat = VideoCategory.find_by id: 1
+    end
+    
 
   end
   
-  def play
-
-      
-
-  end
 
 end
